@@ -226,7 +226,11 @@ class Auth {
     provAuthDebug('Validating nonce')
     provAuthDebug('Nonce: ' + token.nonce)
 
-    if (await Database.Get(false, 'nonce', { nonce: token.nonce })) throw new Error('NONCE_ALREADY_RECEIVED')
+    const queryResult = await Database.Get(false, 'nonce', { nonce: token.nonce })
+    if (queryResult) {
+      provAuthDebug(`Nonce query result: ${JSON.stringify(queryResult)}`)
+      throw new Error('NONCE_ALREADY_RECEIVED')
+    }
     provAuthDebug('Storing nonce')
     await Database.Insert(false, 'nonce', { nonce: token.nonce })
 
