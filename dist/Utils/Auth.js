@@ -176,6 +176,7 @@ class Auth {
 
   static async verifyToken(token, key, validationParameters, platform, Database) {
     provAuthDebug('Attempting to verify JWT with the given key');
+    provAuthDebug(`JWT: ${token} | key: ${key}`)
     const verified = jwt.verify(token, key, {
       algorithms: [validationParameters.alg],
       clockTimestamp: Date.now() / 1000
