@@ -89,6 +89,7 @@ class Auth {
     if (!platformActive) throw new Error('PLATFORM_NOT_ACTIVATED')
 
     const authConfig = await platform.platformAuthConfig()
+    provAuthDebug(`Platform authConfig: ${JSON.stringify(authConfig)}`)
     /* istanbul ignore next */
     switch (authConfig.method) {
       case 'JWK_SET': {
