@@ -859,7 +859,6 @@ class Provider {
       const result = await _Database.Get(false, 'platform', { platformUrl: url, clientId: clientId })
       if (!result) return false
       const plat = result[0]
-      provMainDebug(`Loaded Platform: ${JSON.stringify(plat)}`)
       const platform = new Platform(plat.platformName, plat.platformUrl, plat.clientId, plat.authEndpoint, plat.accesstokenEndpoint, plat.authorizationServer, plat.kid, _ENCRYPTIONKEY, plat.authConfig, _Database)
       return platform
     }
